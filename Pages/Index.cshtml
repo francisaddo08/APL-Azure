@@ -1,0 +1,71 @@
+﻿@page
+@using APL_Technical_Test.data.entities
+
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+@{
+    var image = (ImageInformation) ViewData["infor"];
+}
+<p>@Model.imagePath</p>
+<p>@Model.imageName</p>
+<div class="row">
+    <div class="col-md-12 col-12 col-sm-12 col-lg-8 offset-lg-2">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UploadImage" class="control-label"></label>
+                <input type="file" asp-for="UploadImage" accept = ".jpg, .png" class="form-control" required  />
+                <span asp-validation-for="UploadImage" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Create" onclick="readURL(this)" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@*============================================================================================*@
+@if (@Model.imageName != null)
+{
+    <div class="row">
+        <div class="col-md-12 col-12 col-sm-12 col-lg-8 offset-lg-2">
+            <div class="container">
+                <h2>Image</h2>
+                <img class="img-responsive" src="~/uploads/@Model.imageName" alt="" width="460" height="345"> 
+            </div>
+
+
+        </div>
+    </div>
+
+    @* ************************TABLE*****************************************@
+
+    <div class="table-responsive mt-2">
+        <h4>Image Information</h4>
+        <table class="table table-bordered ">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Image Name</th>
+                    <th>Dimension</th>
+                    <th>Upload Date</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>3</td>
+                    <td>7</td>
+                    <td class="wall-colour" style="background-color: palegreen">4 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+
